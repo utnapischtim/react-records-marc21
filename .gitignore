@@ -1,0 +1,19 @@
+# -*- coding: utf-8 -*-
+#
+# This file is part of Invenio.
+#
+# Copyright (C) 2020 Graz University of Technology.
+#
+# React-Records-Marc21 is free software; you can redistribute it and/or
+# modify it under the terms of the MIT License; see LICENSE file for more
+# details.
+/coverage
+/es
+/lib
+/dist
+/node_modules
+/umd
+/docs/website/node_modules
+/docs/website/build
+npm-debug.log*
+.history
