@@ -23,6 +23,7 @@ export function configureStore(appConfig) {
     config,
     permissions,
     formState: null,
+    editorState: true,
   };
   const preloadedState = {
     deposit: initialDepositState,
