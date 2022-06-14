@@ -152,7 +152,7 @@ export class Marc21MetadataFields extends Field {
     if (_has(record_dict, ["fields"])) {
       record_dict.fields = this._serialize_fields(metadata, record_dict.fields);
     }
-    const marcxml = { xml: metadata.as("marcxml") };
+    const marcxml = metadata.as("marcxml");
 
     return _set(_cloneDeep(record), this.fieldpath, marcxml);
   }
