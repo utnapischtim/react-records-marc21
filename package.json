@@ -30,7 +30,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.js",
-    "format": "prettier --config ./.prettierrc --ignore-path ./.prettierignore --write \"src/**/*.js\""
+    "format": "prettier --config ./.prettierrc --ignore-path ./.prettierignore --write \"src/**/*.js\"",
+    "check-format": "prettier --config ./.prettierrc --ignore-path ./.prettierignore  -c \"src/**/*.js\""
   },
   "dependencies": {
     "@inveniosoftware/eslint-config-invenio": "^1.0.0",
