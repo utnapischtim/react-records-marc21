@@ -14,7 +14,7 @@ import _set from "lodash/set";
 import { Field, Marc21MetadataFields } from "./fields";
 
 export class Marc21RecordSerializer {
-  constructor() { }
+  constructor() {}
 
   depositRecordSchema = {
     access: new Field({

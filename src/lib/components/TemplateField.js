@@ -14,7 +14,6 @@ import _set from "lodash/set";
 import { FieldLabel } from "react-invenio-forms";
 import { Card, Form, Button } from "semantic-ui-react";
 
-
 class TemplateFieldComponent extends Component {
   constructor(props) {
     super(props);

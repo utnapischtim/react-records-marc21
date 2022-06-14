@@ -8,7 +8,7 @@
 
 import React, { Component } from "react";
 import { Provider } from "react-redux";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { configureStore } from "./store";
 import { Marc21RecordSchema } from "./Marc21RecordSchema";
 import { Marc21Controller } from "./Marc21Controller";
@@ -49,8 +49,6 @@ export class Marc21DepositApp extends Component {
       recordSerializer: recordSerializer,
     };
 
-  // const submitFormData = props.submitFormData ? props.submitFormData : submitFormData;
-
     this.store = configureStore(appConfig);
   }
 
@@ -59,11 +57,9 @@ export class Marc21DepositApp extends Component {
       <Provider store={this.store}>
         <Marc21FormHandler props={this.props}>{this.props.children}</Marc21FormHandler>
       </Provider>
-  
     );
   }
 }
-
 
 Marc21DepositApp.propTypes = {
   config: PropTypes.object.isRequired,

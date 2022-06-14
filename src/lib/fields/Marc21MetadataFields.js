@@ -6,7 +6,7 @@
 // modify it under the terms of the MIT License; see LICENSE file for more
 // details.
 
-const { Marc, Record } = require('marcjs');
+const { Marc, Record } = require("marcjs");
 import _cloneDeep from "lodash/cloneDeep";
 import _get from "lodash/get";
 import _has from "lodash/has";
