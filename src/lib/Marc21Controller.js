@@ -14,8 +14,7 @@ import {
   ACTION_PUBLISH_SUCCEEDED,
 } from "./state/types";
 
-import {isEmpty, set, has} from "lodash";
-
+import { isEmpty, set, has } from "lodash";
 
 export class Marc21Controller {
   constructor(apihandler, schema) {

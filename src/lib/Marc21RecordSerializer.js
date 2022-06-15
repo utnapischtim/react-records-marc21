@@ -6,7 +6,7 @@
 // modify it under the terms of the MIT License; see LICENSE file for more
 // details.
 
-import { cloneDeep, defaults, pick, set} from "lodash";
+import { cloneDeep, defaults, pick, set } from "lodash";
 import { Field, Marc21MetadataFields } from "./fields";
 
 export class Marc21RecordSerializer {
