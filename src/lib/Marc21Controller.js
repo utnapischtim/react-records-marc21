@@ -13,9 +13,9 @@ import {
   ACTION_PUBLISH_FAILED,
   ACTION_PUBLISH_SUCCEEDED,
 } from "./state/types";
-import _isEmpty from "lodash/isEmpty";
-import _set from "lodash/set";
-import _has from "lodash/has";
+
+import {isEmpty, set, has} from "lodash";
+
 
 export class Marc21Controller {
   constructor(apihandler, schema) {
@@ -34,8 +34,8 @@ export class Marc21Controller {
     const payload = recordSerializer.serialize(draft);
     const response = await this.apihandler.create(payload);
 
-    if (_has(response, ["data", "ui", "metadata"])) {
-      _set(response.data, "metadata", response.data.ui.metadata);
+    if (has(response, ["data", "ui", "metadata"])) {
+      set(response.data, "metadata", response.data.ui.metadata);
     }
     store.dispatch({
       type: ACTION_CREATE_SUCCEEDED,
@@ -61,7 +61,7 @@ export class Marc21Controller {
   async saveDraft(draft, { formik, store }) {
     const recordSerializer = store.config.recordSerializer;
     // Set defaultPreview for files
-    draft = _set(
+    draft = set(
       draft,
       "defaultFilePreview",
       store.getState().deposit.defaultFilePreview
@@ -76,15 +76,15 @@ export class Marc21Controller {
       response = await this.apihandler.save(payload);
     }
 
-    if (_has(response, ["data", "ui", "metadata"])) {
-      _set(response.data, "metadata", response.data.ui.metadata);
+    if (has(response, ["data", "ui", "metadata"])) {
+      set(response.data, "metadata", response.data.ui.metadata);
     }
 
     let data = recordSerializer.deserialize(response.data || {});
     let errors = recordSerializer.deserializeErrors(response.errors || []);
 
     // response 100% successful
-    if (200 <= response.code && response.code < 300 && _isEmpty(errors)) {
+    if (200 <= response.code && response.code < 300 && isEmpty(errors)) {
       store.dispatch({
         type: ACTION_SAVE_SUCCEEDED,
         payload: { data },

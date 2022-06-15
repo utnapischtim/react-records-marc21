@@ -7,11 +7,7 @@
 // details.
 
 const { Marc, Record } = require("marcjs");
-import _cloneDeep from "lodash/cloneDeep";
-import _get from "lodash/get";
-import _has from "lodash/has";
-import _pick from "lodash/pick";
-import _set from "lodash/set";
+import { get, set, has, pick, cloneDeep } from "lodash";
 import { Field } from "./Field";
 
 export class Marc21MetadataFields extends Field {
@@ -43,7 +39,7 @@ export class Marc21MetadataFields extends Field {
    */
   deserialize(record) {
     let deserializedRecord = record;
-    deserializedRecord = _pick(deserializedRecord, [
+    deserializedRecord = pick(deserializedRecord, [
       "metadata",
       "id",
       "links",
@@ -93,9 +89,9 @@ export class Marc21MetadataFields extends Field {
    * @returns {object} frontend compatible element object
    */
   deserialize(record) {
-    record = _cloneDeep(record);
+    record = cloneDeep(record);
 
-    let marcxml = _get(record, this.fieldpath);
+    let marcxml = get(record, this.fieldpath);
 
     let record_dict;
 
@@ -108,7 +104,7 @@ export class Marc21MetadataFields extends Field {
       record_dict = this.deserializedDefault;
     }
 
-    return _set(record, this.fieldpath, record_dict);
+    return set(record, this.fieldpath, record_dict);
   }
 
   static _serialize_subfields(subfields) {
@@ -142,18 +138,18 @@ export class Marc21MetadataFields extends Field {
    *
    */
   serialize(record) {
-    let record_dict = _get(record, this.fieldpath, this.serializedDefault);
+    let record_dict = get(record, this.fieldpath, this.serializedDefault);
     let metadata = new Record();
-    if (_has(record_dict, ["leader"])) {
+    if (has(record_dict, ["leader"])) {
       metadata.leader = record_dict.leader;
     } else {
       metadata.leader = "";
     }
-    if (_has(record_dict, ["fields"])) {
+    if (has(record_dict, ["fields"])) {
       record_dict.fields = this._serialize_fields(metadata, record_dict.fields);
     }
     const marcxml = metadata.as("marcxml");
 
-    return _set(_cloneDeep(record), this.fieldpath, marcxml);
+    return set(cloneDeep(record), this.fieldpath, marcxml);
   }
 }

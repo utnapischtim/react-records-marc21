@@ -10,7 +10,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { FastField } from "formik";
-import _set from "lodash/set";
 import { FieldLabel } from "react-invenio-forms";
 import { Card, Form, Button } from "semantic-ui-react";
 

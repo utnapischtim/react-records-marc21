@@ -5,8 +5,7 @@
 // React-Records-Marc21 is free software; you can redistribute it and/or
 // modify it under the terms of the MIT License; see LICENSE file for more
 // details.
-import _get from "lodash/get";
-import _isEmpty from "lodash/isEmpty";
+
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Icon, Button, Modal } from "semantic-ui-react";

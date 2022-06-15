@@ -6,8 +6,6 @@
 // modify it under the terms of the MIT License; see LICENSE file for more
 // details.
 
-import _cloneDeep from "lodash/cloneDeep";
-import _get from "lodash/get";
 import { compose, applyMiddleware, createStore } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./state/reducers";

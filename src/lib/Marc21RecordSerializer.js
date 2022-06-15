@@ -6,11 +6,7 @@
 // modify it under the terms of the MIT License; see LICENSE file for more
 // details.
 
-import _cloneDeep from "lodash/cloneDeep";
-import _defaults from "lodash/defaults";
-import _pick from "lodash/pick";
-import _set from "lodash/set";
-
+import { cloneDeep, defaults, pick, set} from "lodash";
 import { Field, Marc21MetadataFields } from "./fields";
 
 export class Marc21RecordSerializer {
@@ -50,10 +46,10 @@ export class Marc21RecordSerializer {
    * @returns {object} frontend compatible record object
    */
   deserialize(record) {
-    record = _cloneDeep(record);
+    record = cloneDeep(record);
 
     let deserializedRecord = record;
-    deserializedRecord = _pick(deserializedRecord, [
+    deserializedRecord = pick(deserializedRecord, [
       "access",
       "metadata",
       "id",
@@ -77,7 +73,7 @@ export class Marc21RecordSerializer {
   deserializeErrors(errors) {
     let deserializedErrors = {};
     for (let e of errors) {
-      _set(deserializedErrors, e.field, e.messages.join(" "));
+      set(deserializedErrors, e.field, e.messages.join(" "));
     }
 
     return deserializedErrors;
@@ -91,9 +87,9 @@ export class Marc21RecordSerializer {
    *
    */
   serialize(record) {
-    record = _cloneDeep(record);
+    record = cloneDeep(record);
     let serializedRecord = record; //this.removeEmptyValues(record);
-    serializedRecord = _pick(serializedRecord, [
+    serializedRecord = pick(serializedRecord, [
       "access",
       "metadata",
       "id",
@@ -105,7 +101,7 @@ export class Marc21RecordSerializer {
       serializedRecord = this.depositRecordSchema[key].serialize(serializedRecord);
     }
 
-    _defaults(serializedRecord, { metadata: {} });
+    defaults(serializedRecord, { metadata: {} });
 
     return serializedRecord;
   }

@@ -9,7 +9,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Button, Form, Icon } from "semantic-ui-react";
-import _get from "lodash/get";
 import { ArrayField, GroupField } from "react-invenio-forms";
 import { MetadataField } from "./MetadataField";
 import { LeaderField } from "./LeaderField";
