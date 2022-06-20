@@ -56,10 +56,16 @@ export class Marc21RecordSerializer {
       "links",
       "files",
       "pids",
+      "parent",
     ]);
     for (let key in this.depositRecordSchema) {
       deserializedRecord =
         this.depositRecordSchema[key].deserialize(deserializedRecord);
+    }
+    if ("id" in record) {
+      if (typeof record.id !== "string") {
+        delete deserializedRecord["id"];
+      }
     }
     return deserializedRecord;
   }
@@ -96,9 +102,15 @@ export class Marc21RecordSerializer {
       "links",
       "files",
       "pids",
+      "parent",
     ]);
     for (let key in this.depositRecordSchema) {
       serializedRecord = this.depositRecordSchema[key].serialize(serializedRecord);
+    }
+    if ("id" in record) {
+      if (typeof record.id !== "string") {
+        delete serializedRecord["id"];
+      }
     }
 
     defaults(serializedRecord, { metadata: {} });
