@@ -20,7 +20,9 @@ class TemplateFieldComponent extends Component {
   }
 
   setTemplate(template) {
-    this.formik.form.setValues(template);
+    let values = this.formik.form.values;
+    values.metadata = template.metadata;
+    this.formik.form.setValues(values);
   }
 
   render() {

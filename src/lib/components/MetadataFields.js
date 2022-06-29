@@ -6,7 +6,7 @@
 // modify it under the terms of the MIT License; see LICENSE file for more
 // details.
 
-import React, { Component } from "react";
+import React, { Component, StrictMode } from "react";
 import PropTypes from "prop-types";
 import { Button, Form, Icon } from "semantic-ui-react";
 import { ArrayField, GroupField } from "react-invenio-forms";
@@ -17,27 +17,31 @@ export class MetadataFields extends Component {
   render() {
     const { fieldPath } = this.props;
     return (
-      <>
+      <StrictMode>
         <GroupField fieldPath={`${fieldPath}.leader`}>
           <LeaderField fieldPath={`${fieldPath}.leader`} />
         </GroupField>
         <ArrayField
           addButtonLabel={"Add"}
           fieldPath={`${fieldPath}.fields`}
-          defaultNewValue={{ id: "", ind1: "", ind2: "", subfield: "" }}
+          defaultNewValue={{ id: "", ind1: "", ind2: "", subfield: "$$" }}
+          className="marcxml metadata fields."
         >
-          {({ array, arrayHelpers, indexPath, key }) => (
-            <GroupField fieldPath={fieldPath}>
-              <MetadataField fieldPath={key} />
-              <Form.Field width={1}>
-                <Button icon onClick={() => arrayHelpers.remove(indexPath)}>
-                  <Icon name="close" />
-                </Button>
-              </Form.Field>
-            </GroupField>
-          )}
+          {({ arrayHelpers, indexPath }) => {
+            const fieldPathPrefix = `${fieldPath}.fields.${indexPath}`;
+            return (
+              <GroupField optimized>
+                <MetadataField fieldPath={fieldPathPrefix} />
+                <Form.Field width={1}>
+                  <Button icon onClick={() => arrayHelpers.remove(indexPath)}>
+                    <Icon name="close" />
+                  </Button>
+                </Form.Field>
+              </GroupField>
+            );
+          }}
         </ArrayField>
-      </>
+      </StrictMode>
     );
   }
 }
