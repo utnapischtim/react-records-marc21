@@ -2,6 +2,11 @@
 Changes
 =======
 
+Version v0.2.1 (release 2022-11-30)
+
+- release v0.2.0
+
+
 Version v0.2.0 (release 2022-11-29)
 
 - modification: add change log
