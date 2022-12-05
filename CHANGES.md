@@ -2,6 +2,11 @@
 Changes
 =======
 
+Version v0.2.2 (release 2022-12-05)
+
+- modification: unify release commit message
+
+
 Version v0.2.1 (release 2022-11-30)
 
 - release v0.2.0
