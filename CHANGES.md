@@ -2,6 +2,12 @@
 Changes
 =======
 
+Version v0.2.3 (release 2023-01-16)
+
+- modification: add classname
+- publish: migrate to reusable workflows
+
+
 Version v0.2.2 (release 2022-12-05)
 
 - modification: unify release commit message
