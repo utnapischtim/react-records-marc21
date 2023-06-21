@@ -56,36 +56,6 @@ export class Marc21MetadataFields extends Field {
     return deserializedRecord;
   }
 
-  static _deserialize_subfields(subfields) {
-    let field = "";
-    subfields.forEach((subfield) => {
-      for (const [key, value] of Object.entries(subfield)) {
-        field += " $$" + key + " " + value;
-      }
-    });
-    return field;
-  }
-
-  _deserialize_fields(fields) {
-    let metadata = [];
-    for (const field of Object.values(fields)) {
-      const key = Object.keys(field)[0];
-      const value = Object.values(field)[0];
-      let subfields = value;
-      if (!this.controlfields.includes(key)) {
-        subfields = Marc21MetadataFields._deserialize_subfields(value["subfields"]);
-      }
-      let internal = {
-        id: key,
-        ind1: value["ind1"],
-        ind2: value["ind2"],
-        subfield: subfields,
-      };
-      metadata.push(internal);
-    }
-    return metadata;
-  }
-
   /**
    * Deserialize backend field into format compatible with frontend using
    * the given schema.
@@ -94,22 +64,7 @@ export class Marc21MetadataFields extends Field {
    * @returns {object} frontend compatible element object
    */
   deserialize(record) {
-    record = cloneDeep(record);
-
-    let marcxml = get(record, this.fieldpath);
-
-    let record_dict;
-
-    if (marcxml != null) {
-      const marcjs = Marc.parse(marcxml, "marcxml");
-      record_dict = marcjs.mij();
-      record_dict.fields = this._deserialize_fields(record_dict.fields);
-      record_dict.fields.sort(this.compare);
-    } else {
-      record_dict = this.deserializedDefault;
-    }
-
-    return set(record, this.fieldpath, record_dict);
+    return record;
   }
 
   static _serialize_subfields(subfields) {
